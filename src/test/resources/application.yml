@@ -1,0 +1,49 @@
+# Database configuration props
+spring:
+  datasource:
+    #url: jdbc:mysql://localhost:3306/studentsdb?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/studentsdb
+    username: root
+    password: mysql
+  #spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+  # hibernate props
+  jpa:
+    show-sql: true
+    hibernate:
+      #ddl-auto: create-drop
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+liquibase:
+  enabled: true # Whether to enable Liquibase support.
+  change-log: classpath:db/changelog/db.changelog-master-test.yaml
+  #check-change-log-location: true # Whether to check that the change log location exists.
+  #contexts: # Comma-separated list of runtime contexts to use.
+  database-change-log-lock-table: DATABASECHANGELOGLOCK # Name of table to use for tracking concurrent Liquibase usage.
+  database-change-log-table: DATABASECHANGELOG # Name of table to use for tracking change history.
+  #default-schema: # Default database schema.
+  #drop-first: false # Whether to first drop the database schema.
+  #labels: # Comma-separated list of runtime labels to use.
+  #liquibase-schema: # Schema to use for Liquibase objects.
+  #liquibase-tablespace: # Tablespace to use for Liquibase objects.
+  #rollback-file: # File to which rollback SQL is written when an update is performed.
+  #test-rollback-on-update: false # Whether rollback should be tested before update is performed.
+  url: jdbc:mysql://localhost:3306/studentsdb # JDBC URL of the database to migrate. If not set, the primary configured data source is used.
+  user: root # Login user of the database to migrate.
+  password: mysql # Login password of the database to migrate.
+  driver: com.mysql.cj.jdbc.Driver
+  outputChangeLogFile: src/main/resources/liquibase-outputChangeLog.xml
+
+
+logging:
+  level:
+    root: info
+    liquibase: INFO
+  file:
+    path: c:/logs
+
+server:
+  port: 8092
